@@ -7,7 +7,8 @@ const App = () => {
   return (
     <View style={{
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      flex: 1
     }}>
       <Text>
         My Skills
