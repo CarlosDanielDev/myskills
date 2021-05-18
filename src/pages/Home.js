@@ -5,7 +5,7 @@ import {
     StyleSheet, 
     TextInput, 
     Platform,
-    ScrollView
+    FlatList
 } from 'react-native';
 import { Button } from '../components/Button';
 import { Skill } from '../components/Skill';
@@ -41,13 +41,16 @@ export const Home = () => {
             <Text style={[styles.title, { marginVertical: 50 }]}>
                 My Skills
             </Text>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                {skills.map((skill, index) => (
-                    <Skill key={String(index)}>
+            <FlatList
+                data={skills}
+                keyExtractor={item => item}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item: skill}) => (
+                    <Skill>
                         {skill}
                     </Skill>
-                ))}
-            </ScrollView>
+                )}
+            />          
         </View>
     )
 }
