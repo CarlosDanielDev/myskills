@@ -4,9 +4,10 @@ import {
     Text,
     StyleSheet, 
     TextInput, 
-    Platform,
-    TouchableOpacity
+    Platform
 } from 'react-native';
+import { Button } from '../components/Button';
+import { Skill } from '../components/Skill';
 
 
 export const Home = () => {
@@ -31,27 +32,20 @@ export const Home = () => {
                 onChangeText={setNewSkill}
                 value={newSkill}
             />
-            <TouchableOpacity 
-                style={styles.button}
+            <Button 
                 activeOpacity={0.7}
                 onPress={handleAddNewSkill}
-            >
-                <Text style={styles.buttonText}>
-                    Add
-                </Text>
-            </TouchableOpacity>
+            />
 
             <Text style={[styles.title, { marginVertical: 50 }]}>
                 My Skills
             </Text>
 
-                {skills.map((skill, index) => (
-                    <TouchableOpacity style={styles.buttonSkill} key={String(index)}>
-                        <Text style={styles.textSkill}>
-                            {skill}
-                        </Text>
-                    </TouchableOpacity>
-                ))}
+            {skills.map((skill, index) => (
+                <Skill key={String(index)}>
+                    {skill}
+                </Skill>
+            ))}
         </View>
     )
 }
@@ -76,29 +70,5 @@ const styles = StyleSheet.create({
         padding: Platform.OS === 'ios' ? 15 : 10,
         marginTop: 30,
         borderRadius: 7
-    },
-    button: {
-        backgroundColor: '#a370f7',
-        padding: 15,
-        borderRadius: 7,
-        alignItems: 'center',
-        marginTop: 20
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 17,
-        fontWeight: 'bold'
-    },
-    buttonSkill: {
-        backgroundColor: '#1f1e15',
-        padding: 15,
-        borderRadius: 50,
-        alignItems: 'center',
-        marginVertical: 10
-    },
-    textSkill: {
-        color: '#fff',
-        fontSize: 22,
-        fontWeight: 'bold'
     }
 })
