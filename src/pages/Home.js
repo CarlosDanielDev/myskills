@@ -30,16 +30,11 @@ export const Home = () => {
         const isPm = amPm === 'PM';
         const hour = timeNow.getHours();
         setCurrentTime(time);
-        if(!isPm && hour < 12) {
-            setGreeting('Good Morning!')
-        } else if(isPm && hour < 6) {
-            setGreeting('Good Afternoon!')
-        } else if(isPm && hour <= 8) {
-            setGreeting('Good Evening!')
-        } else if(isPm && hour > 8) {
-            setGreeting('Good Night...')
-        }
-        
+
+        if(!isPm && hour < 12) setGreeting('Good Morning!')
+        else if(isPm && hour < 6) setGreeting('Good Afternoon!')
+        else if(isPm && hour > 6 && hour < 8) setGreeting('Good Evening!')
+        else setGreeting('Good Night...')
     }
 
     useEffect(() => {
