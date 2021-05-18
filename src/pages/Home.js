@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet, 
     TextInput, 
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native';
 import { Button } from '../components/Button';
 import { Skill } from '../components/Skill';
@@ -40,12 +41,13 @@ export const Home = () => {
             <Text style={[styles.title, { marginVertical: 50 }]}>
                 My Skills
             </Text>
-
-            {skills.map((skill, index) => (
-                <Skill key={String(index)}>
-                    {skill}
-                </Skill>
-            ))}
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {skills.map((skill, index) => (
+                    <Skill key={String(index)}>
+                        {skill}
+                    </Skill>
+                ))}
+            </ScrollView>
         </View>
     )
 }
