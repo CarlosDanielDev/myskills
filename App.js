@@ -1,19 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-
-// import { Container } from './styles';
+import { Home } from './src/pages/Home';
 
 const App = () => {
   return (
-    <View style={{
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1
-    }}>
-      <Text>
-        My Skills
-      </Text>
-    </View>
+    <Home/>
   );
 }
 
