@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, TouchableOpacityProps } from 'react-native';
 
-export const Button = ({...rest}) => {
+export const Button: React.FC<TouchableOpacityProps> = ({...rest}) => {
     return (
         <TouchableOpacity 
             style={styles.button}

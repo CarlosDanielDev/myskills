@@ -12,14 +12,24 @@ import { Button } from '../components/Button';
 import { Skill } from '../components/Skill';
 
 
-export const Home = () => {
+type SkillData = {
+    id: string
+    name: string
+    date?: Date
+}
+
+export const Home: React.FC = () => {
     const [newSkill, setNewSkill] = useState('');
-    const [skills, setSkills] = useState([]);
+    const [skills, setSkills] = useState<SkillData[]>([]);
     const [greeting, setGreeting] = useState('');
     const [currentTime, setCurrentTime] = useState('');
 
     const handleAddNewSkill = () => {
-        setSkills(prevState => [...prevState, newSkill]);
+        const data: SkillData = {
+            id: String(new Date().getTime()),
+            name: newSkill,
+        }
+        setSkills(prevState => [...prevState, data]);
         setNewSkill('');
     }
 
@@ -35,6 +45,10 @@ export const Home = () => {
         else if(isPm && hour < 6) setGreeting('Good Afternoon!')
         else if(isPm && hour > 6 && hour < 8) setGreeting('Good Evening!')
         else setGreeting('Good Night...')
+    }
+
+    const handleRemoveSkill = (id: string) => {
+        setSkills(prevState => prevState.filter(skill => skill.id !== id))
     }
 
     useEffect(() => {
@@ -69,11 +83,13 @@ export const Home = () => {
             </Text>
             <FlatList
                 data={skills}
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item: skill}) => (
-                    <Skill>
-                        {skill}
+                    <Skill
+                        onPress={() => handleRemoveSkill(skill.id)}
+                    >
+                        {skill.name}
                     </Skill>
                 )}
             />          
